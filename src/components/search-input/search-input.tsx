@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Text } from "../text/text";
 
 interface SearchListResult {
-  name: string;
-  lat: number;
-  lon: number;
-  state: string;
+  [key: string]: any;
 }
 interface SearchInputProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
@@ -37,6 +34,7 @@ interface SearchInputProps extends React.HTMLAttributes<HTMLInputElement> {
 export const SearchInput = ({
   list,
   query,
+  isLoading,
   setQuery,
   onSelected,
   ...props
@@ -54,14 +52,16 @@ export const SearchInput = ({
   }, [list, query]);
 
   return (
-    <div className="relative">
+    <div className="relative" onBlur={() => setShowList(false)}>
       <input
         type="text"
         className="p-2 rounded-lg bg-white container text-black border-black border font-Montserrat placeholder:text-black"
         ref={inputRef}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setShowList(true)}
+        onFocus={() => {
+          if (query.length > 3) setShowList(true);
+        }}
         {...props}
       />
       {showList && (
@@ -80,9 +80,14 @@ export const SearchInput = ({
               {item.state && <Text>({item.state})</Text>}
             </button>
           ))}
-          {!list.length && (
+          {!list.length && !isLoading && (
             <div className="p-2 container text-black">
               <Text>No results found</Text>
+            </div>
+          )}
+          {isLoading && (
+            <div className="p-2 container text-black">
+              <Text>Loading...</Text>
             </div>
           )}
         </div>
