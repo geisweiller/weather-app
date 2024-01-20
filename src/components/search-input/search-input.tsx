@@ -5,6 +5,7 @@ interface SearchListResult {
   name: string;
   lat: number;
   lon: number;
+  state: string;
 }
 interface SearchInputProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
@@ -53,7 +54,7 @@ export const SearchInput = ({
   }, [list, query]);
 
   return (
-    <div className="relative" onBlur={() => setShowList(false)}>
+    <div className="relative">
       <input
         type="text"
         className="p-2 rounded-lg bg-white container text-black border-black border font-Montserrat placeholder:text-black"
@@ -67,8 +68,8 @@ export const SearchInput = ({
         <div className="absolute container bg-white rounded-lg z-10 mt-1 flex flex-col border-black border">
           {list.map((item) => (
             <button
-              key={item.name}
-              className="p-2 container flex items-start bg-white text-black hover:bg-dark-blue hover:text-white"
+              key={item.lat + item.lon}
+              className="p-2 container flex items-start bg-white text-black hover:bg-dark-blue hover:text-white hover:cursor-pointer gap-1"
               onClick={() => {
                 onSelected(item);
                 setShowList(false);
@@ -76,6 +77,7 @@ export const SearchInput = ({
               }}
             >
               <Text>{item.name}</Text>
+              {item.state && <Text>({item.state})</Text>}
             </button>
           ))}
           {!list.length && (

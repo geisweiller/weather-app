@@ -20,9 +20,9 @@ export const Primary: Story = {
   args: {
     query: "",
     list: [
-      { name: "Item 1", lat: 0, lon: 0 },
-      { name: "Item 2", lat: 0, lon: 0 },
-      { name: "Item 3", lat: 0, lon: 0 },
+      { name: "Item 1", lat: 0, lon: 0, state: "State 1" },
+      { name: "Item 2", lat: 0, lon: 0, state: "State 2" },
+      { name: "Item 3", lat: 0, lon: 0, state: "State 3" },
     ],
     setQuery: (query) => console.log(`Query: ${query}`),
     onSelected: (item) => window.alert(`Selected ${item.name}`),
