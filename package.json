@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "generate-component": "node ./scripts/generate-component",
+    "test": "vitest --config ./vitest.config.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -38,6 +39,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-storybook": "^0.6.15",
+    "jsdom": "^23.2.0",
     "postcss": "^8.4.33",
     "storybook": "^7.6.10",
     "tailwindcss": "^3.4.1",
