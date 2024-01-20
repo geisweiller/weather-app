@@ -6,8 +6,10 @@ export default {
   ],
   theme: {
     colors: {
-      darkBlue: "#204d88",
+      "dark-blue": "#204d88",
       white: "#ffffff",
+      "bg-white": "#fefefe",
+      "bg-blue": "#00a4e4",
       black: "#000000",
     },
     screens: {},
@@ -18,4 +20,5 @@ export default {
   },
   plugins: [],
 }
+
 
