@@ -8,6 +8,7 @@ export default {
     colors: {
       darkBlue: "#204d88",
       white: "#ffffff",
+      black: "#000000",
     },
     screens: {},
     fontFamily: {
