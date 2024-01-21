@@ -12,6 +12,8 @@ export default {
       "bg-blue": "#00a4e4",
       black: "#000000",
       transparent: "transparent",
+      gray: "#808080",
+      "light-gray": "#f2f2f2",
     },
     screens: {},
     fontFamily: {

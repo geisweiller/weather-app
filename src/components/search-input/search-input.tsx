@@ -52,7 +52,7 @@ export const SearchInput = ({
   }, [list, query]);
 
   return (
-    <div className="relative" onBlur={() => setShowList(false)}>
+    <div className="relative">
       <input
         type="text"
         className="p-2 rounded-lg bg-white container text-black border-black border font-Montserrat placeholder:text-black"
