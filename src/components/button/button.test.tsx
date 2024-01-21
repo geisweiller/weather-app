@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { expect, describe, it } from "vitest";
 
-import * as stories from "./card.stories";
+import * as stories from "./button.stories";
 import { composeStories } from "@storybook/react";
 
 const { Primary } = composeStories(stories);

@@ -14,7 +14,7 @@ interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 export const Text = ({ children, className, ...props }: TextProps) => {
   return (
-    <p className={cn("font-Montserrat", className)} {...props}>
+    <p className={cn("font-Montserrat text-white", className)} {...props}>
       {children}
     </p>
   );

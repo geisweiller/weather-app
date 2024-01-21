@@ -11,7 +11,7 @@ interface CardProps extends React.HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export const Card = ({ children, className, ...props }: CardProps) => {
+export const Button = ({ children, className, ...props }: CardProps) => {
   return (
     <button
       type="button"
