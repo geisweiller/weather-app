@@ -25,9 +25,10 @@ interface TogglerProps {
 
 export const Toggler = ({ options, onClick }: TogglerProps) => {
   return (
-    <div className="flex p-1 border rounded-lg min-w-20">
+    <div className="flex p-1 border border-light-blue bg-light-blue rounded-lg min-w-20">
       {options.map((option) => (
         <button
+          key={option.id}
           className={cn(
             "p-1 rounded-lg w-full",
             option.selected && "bg-dark-blue text-white"

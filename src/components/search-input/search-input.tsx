@@ -55,7 +55,7 @@ export const SearchInput = ({
     <div className="relative">
       <input
         type="text"
-        className="p-2 rounded-lg bg-white container text-black border-black border font-Montserrat placeholder:text-black"
+        className="p-2 rounded-lg bg-dark-blue bg-opacity-50 container text-light-gray border-dark-blue border font-Montserrat placeholder:text-light-gray"
         ref={inputRef}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -64,12 +64,12 @@ export const SearchInput = ({
         }}
         {...props}
       />
-      {showList && (
-        <div className="absolute container bg-white rounded-lg z-10 mt-1 flex flex-col border-black border">
+      {/* {showList && (
+        <div className="absolute container bg-dark-blue rounded-lg z-10 mt-1 flex flex-col border-dark-blue border shadow-md">
           {list.map((item) => (
             <button
               key={item.lat + item.lon}
-              className="p-2 container flex items-start bg-white text-black hover:bg-dark-blue hover:text-white hover:cursor-pointer gap-1"
+              className="p-2 container flex items-start bg-dark-blue text-light-gray hover:bg-light-blue hover:text-white hover:cursor-pointer gap-1"
               onClick={() => {
                 onSelected(item);
                 setShowList(false);
@@ -81,17 +81,17 @@ export const SearchInput = ({
             </button>
           ))}
           {!list.length && !isLoading && (
-            <div className="p-2 container text-black">
+            <div className="p-2 container text-light-gray">
               <Text>No results found</Text>
             </div>
           )}
           {isLoading && (
-            <div className="p-2 container text-black">
+            <div className="p-2 container  text-light-gray">
               <Text>Loading...</Text>
             </div>
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
