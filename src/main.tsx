@@ -28,7 +28,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <div className="bg-gradient-to-br from-bg-white to-bg-blue w-screen h-screen flex flex-col p-5">
+      <div className="bg-gradient-to-br from-bg-white to-bg-blue w-screen min-h-screen h-full flex flex-col p-5 items-center">
         <RouterProvider router={router} />
       </div>
     </QueryClientProvider>
