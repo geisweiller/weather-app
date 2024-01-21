@@ -2,14 +2,13 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { FetchCurrentWeather, FetchDirectGeocoding } from "../../services/api";
-import { Button, Text, Input, Loader, Toggler } from "../../components";
-import { temperatureConversion } from "../../utils/temperature-conversion";
+import { FetchDirectGeocoding } from "../../services/api";
+import { Button, Text, Input, Loader, Toggler, Box } from "../../components";
 
 const Locations = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [tempUnit, setTempUnit] = useState<string>("C");
+  const [unit, setUnit] = useState("metric");
 
   const {
     data: currentPlaceData,
@@ -21,31 +20,24 @@ const Locations = () => {
     enabled: query.length > 3,
   });
 
-  const handleTemperatureConversion = (temp: number) => {
-    if (tempUnit === "C") {
-      return temperatureConversion(temp, tempUnit, "F");
-    }
-    return temperatureConversion(temp, tempUnit, "C");
-  };
-
   return (
-    <div className="bg-dark-blue  gap-5 h-full flex flex-col p-10 rounded-lg bg-opacity-70">
+    <Box className=" h-max">
       <div className="flex justify-between">
         <Text className="text-3xl font-bold">Weather App</Text>
         <Toggler
           options={[
             {
-              id: "C",
+              id: "metric",
               label: "°C",
-              selected: tempUnit === "C",
+              selected: unit === "metric",
             },
             {
-              id: "F",
+              id: "imperial",
               label: "°F",
-              selected: tempUnit === "F",
+              selected: unit === "imperial",
             },
           ]}
-          onClick={setTempUnit}
+          onClick={setUnit}
         />
       </div>
 
@@ -60,7 +52,7 @@ const Locations = () => {
           className="p-2 container flex items-start bg-transparent text-light-gray hover:bg-light-blue hover:text-white hover:cursor-pointer gap-1"
           onClick={() =>
             navigate(`/${place.name}`, {
-              state: place,
+              state: { ...place, unit },
             })
           }
         >
@@ -85,7 +77,7 @@ const Locations = () => {
           </div>
         )}
       <Button
-        className="min-w-80 bg-light-blue bg-opacity-50 border-light-blue"
+        className="min-w-80 bg-light-blue border-light-blue p-5"
         onClick={() => navigate(`/Salvador`)}
       >
         <div className="flex items-center justify-between w-full">
@@ -94,7 +86,7 @@ const Locations = () => {
         </div>
         <Text>Clear sky</Text>
       </Button>
-    </div>
+    </Box>
   );
 };
 
