@@ -1,5 +1,5 @@
 import { Text, Icon, Box, Button } from "../../components";
-import { Drop, Wind } from "@phosphor-icons/react";
+import { Drop, Wind, Star } from "@phosphor-icons/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FetchCurrentWeather } from "../../services/api";
@@ -7,12 +7,14 @@ import {
   tempUnitConversion,
   windUnitConversion,
 } from "../../utils/unit-conversion";
+import { useLocalStorage } from "../../hooks/use-local-storage";
 
 const Weather = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const currentPlace = location.state;
   const { unit } = location.state;
+
   const {
     data: currentWeatherData,
     isLoading: isWeatherLoading,
@@ -24,11 +26,45 @@ const Weather = () => {
     enabled: !!currentPlace,
   });
 
+  const { storedValue, setValue } = useLocalStorage("locations", "[]");
+
+  const handleLocationFavorite = () => {
+    const parsedLocations = JSON.parse(storedValue);
+
+    const existsIndex = parsedLocations.findIndex(
+      (location: { lat: number; lon: number }) =>
+        location.lat === currentPlace.lat && location.lon === currentPlace.lon
+    );
+
+    if (existsIndex !== -1) {
+      const updatedLocations = [...parsedLocations];
+      updatedLocations.splice(existsIndex, 1);
+      const stringifiedLocations = JSON.stringify(updatedLocations);
+      setValue(stringifiedLocations);
+    } else {
+      const stringifiedNewValue = JSON.stringify([
+        ...parsedLocations,
+        currentPlace,
+      ]);
+
+      setValue(stringifiedNewValue);
+    }
+  };
+
+  const isFavorited = () => {
+    const parsedLocations = JSON.parse(storedValue);
+    const existsIndex = parsedLocations.findIndex(
+      (location: { lat: number; lon: number }) =>
+        location.lat === currentPlace.lat && location.lon === currentPlace.lon
+    );
+    return existsIndex !== -1;
+  };
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex bg-transparent border-transparent shadow-none items-center justify-between">
         <Button
-          className="w-min bg-dark-blue text-sm"
+          className="w-min bg-dark-blue text-sm border-dark-blue"
           onClick={() => navigate("/")}
         >
           <Text className="text-sm">Back</Text>
@@ -65,8 +101,15 @@ const Weather = () => {
             </span>
           </div>
         </div>
-        <Button className="w-min bg-dark-blue text-sm">
-          <Text className="text-sm">Add</Text>
+        <Button
+          className="w-min bg-dark-blue text-sm border-dark-blue"
+          onClick={handleLocationFavorite}
+        >
+          <Star
+            size={32}
+            color="yellow"
+            {...(isFavorited() && { weight: "fill" })}
+          />
         </Button>
       </div>
       {currentWeatherData?.alerts && (

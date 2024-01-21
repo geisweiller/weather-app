@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { FetchDirectGeocoding } from "../../services/api";
 import { Button, Text, Input, Loader, Toggler, Box } from "../../components";
+import { useLocalStorage } from "../../hooks/use-local-storage";
 
 const Locations = () => {
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ const Locations = () => {
     queryFn: () => FetchDirectGeocoding(query),
     enabled: query.length > 3,
   });
+
+  const { storedValue } = useLocalStorage("locations", "[]");
+
+  const favoritedLocations = JSON.parse(storedValue);
 
   return (
     <Box className=" h-max">
@@ -76,16 +81,21 @@ const Locations = () => {
             <Text>No results found for "{query}"</Text>
           </div>
         )}
-      <Button
-        className="min-w-80 bg-light-blue border-light-blue p-5"
-        onClick={() => navigate(`/Salvador`)}
-      >
-        <div className="flex items-center justify-between w-full">
-          <Text className="text-1xl font-bold">Salvador (Bahia, BR)</Text>
-          <Text className="text-2xl font-bold">30 °C</Text>
-        </div>
-        <Text>Clear sky</Text>
-      </Button>
+      {favoritedLocations?.map((location: GeocodingService) => (
+        <Button
+          className="min-w-80 bg-light-blue border-light-blue p-5"
+          onClick={() => navigate(`/${location.name}`, { state: location })}
+        >
+          <div className="flex items-center justify-between w-full">
+            <Text className="text-1xl font-bold">
+              {location.name} ({location.state && `${location.state}, `}
+              {location.country})
+            </Text>
+            <Text className="text-2xl font-bold">30 °C</Text>
+          </div>
+          <Text>Clear sky</Text>
+        </Button>
+      ))}
     </Box>
   );
 };
