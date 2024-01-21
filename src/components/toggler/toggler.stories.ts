@@ -23,15 +23,16 @@ export const Primary: Story = {
   args: {
     options: [
       {
+        id: "1",
         label: "Option 1",
-        onClick: () => console.log("Option 1 clicked"),
         selected: true,
       },
       {
+        id: "2",
         label: "Option 2",
-        onClick: () => console.log("Option 2 clicked"),
         selected: false,
       },
     ],
+    onClick: (id) => console.log(`Option ${id} clicked`),
   },
 };

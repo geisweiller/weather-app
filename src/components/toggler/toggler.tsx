@@ -1,35 +1,40 @@
 import { cn } from "../../utils/class-names";
-
+import { Text } from "../text/text";
 interface TogglerProps {
   /**
-   * This explains foo.
+   * Toggle options
    */
   options: [
     {
+      id: string;
       label: string;
-      onClick: () => void;
       selected: boolean;
     },
     {
+      id: string;
       label: string;
-      onClick: () => void;
       selected: boolean;
     }
   ];
+
+  /**
+   * Action to execute when a option is selected
+   */
+  onClick: (id: string) => void;
 }
 
-export const Toggler = ({ options }: TogglerProps) => {
+export const Toggler = ({ options, onClick }: TogglerProps) => {
   return (
-    <div className="flex p-1 border rounded-lg">
+    <div className="flex p-1 border rounded-lg min-w-20">
       {options.map((option) => (
         <button
           className={cn(
-            "p-2 rounded-lg",
+            "p-1 rounded-lg w-full",
             option.selected && "bg-dark-blue text-white"
           )}
-          onClick={option.onClick}
+          onClick={() => onClick(option.id)}
         >
-          {option.label}
+          <Text className="text-xs">{option.label}</Text>
         </button>
       ))}
     </div>
