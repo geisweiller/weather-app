@@ -16,7 +16,7 @@ export const Button = ({ children, className, ...props }: CardProps) => {
     <button
       type="button"
       className={cn(
-        "rounded-lg border border-black shadow-lg bg-white p-5 w-full flex flex-col",
+        "rounded-lg border border-black shadow-xl p-2 bg-white w-full flex flex-col hover:opacity-80",
         className
       )}
       {...props}
