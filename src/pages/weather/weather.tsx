@@ -12,7 +12,7 @@ import { useLocalStorage } from "../../hooks/use-local-storage";
 const Weather = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const currentPlace = location.state;
+  const currentLocation = location.state;
   const { unit } = location.state;
 
   const {
@@ -20,10 +20,10 @@ const Weather = () => {
     isLoading: isWeatherLoading,
     isFetching: isWeatherFetching,
   } = useQuery({
-    queryKey: ["weather", currentPlace],
+    queryKey: ["weather", currentLocation],
     queryFn: () =>
-      FetchCurrentWeather(currentPlace.lat, currentPlace.lon, unit),
-    enabled: !!currentPlace,
+      FetchCurrentWeather(currentLocation.lat, currentLocation.lon, unit),
+    enabled: !!currentLocation,
   });
 
   const { storedValue, setValue } = useLocalStorage("locations", "[]");
@@ -33,7 +33,8 @@ const Weather = () => {
 
     const existsIndex = parsedLocations.findIndex(
       (location: { lat: number; lon: number }) =>
-        location.lat === currentPlace.lat && location.lon === currentPlace.lon
+        location.lat === currentLocation.lat &&
+        location.lon === currentLocation.lon
     );
 
     if (existsIndex !== -1) {
@@ -44,7 +45,7 @@ const Weather = () => {
     } else {
       const stringifiedNewValue = JSON.stringify([
         ...parsedLocations,
-        currentPlace,
+        currentLocation,
       ]);
 
       setValue(stringifiedNewValue);
@@ -55,7 +56,8 @@ const Weather = () => {
     const parsedLocations = JSON.parse(storedValue);
     const existsIndex = parsedLocations.findIndex(
       (location: { lat: number; lon: number }) =>
-        location.lat === currentPlace.lat && location.lon === currentPlace.lon
+        location.lat === currentLocation.lat &&
+        location.lon === currentLocation.lon
     );
     return existsIndex !== -1;
   };
@@ -72,9 +74,9 @@ const Weather = () => {
         <div className="flex flex-col items-center [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
           <div className="flex items-center gap-5 justify-between">
             <Text className="text-2xl font-bold">
-              {currentPlace.name} (
-              {currentPlace.state && `${currentPlace.state}, `}
-              {currentPlace.country})
+              {currentLocation.name} (
+              {currentLocation.state && `${currentLocation.state}, `}
+              {currentLocation.country})
             </Text>
           </div>
           <div className="flex gap-2 items-center">

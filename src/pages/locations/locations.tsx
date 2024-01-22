@@ -12,7 +12,7 @@ const Locations = () => {
   const [unit, setUnit] = useState("metric");
 
   const {
-    data: currentPlaceData,
+    data: currentLocationData,
     isLoading: isPlaceLoading,
     isFetching: isPlaceFetching,
   } = useQuery({
@@ -51,29 +51,29 @@ const Locations = () => {
         query={query}
         setQuery={setQuery}
       />
-      {currentPlaceData?.map((place) => (
+      {currentLocationData?.map((location) => (
         <button
-          key={place.lat + place.lon}
+          key={location.lat + location.lon}
           className="p-2 container flex items-start bg-transparent text-light-gray hover:bg-light-blue hover:text-white hover:cursor-pointer gap-1"
           onClick={() =>
-            navigate(`/${place.name}`, {
-              state: { ...place, unit },
+            navigate(`/${location.name}`, {
+              state: { ...location, unit },
             })
           }
         >
-          <Text>{place.name}</Text>
+          <Text>{location.name}</Text>
           <Text>
-            ({place.state && `${place.state}, `}
-            {place.country})
+            ({location.state && `${location.state}, `}
+            {location.country})
           </Text>
         </button>
       ))}
-      {(isPlaceLoading || isPlaceFetching) && !currentPlaceData?.length && (
+      {(isPlaceLoading || isPlaceFetching) && !currentLocationData?.length && (
         <div className="flex justify-center">
           <Loader />
         </div>
       )}
-      {!currentPlaceData?.length &&
+      {!currentLocationData?.length &&
         query.length > 3 &&
         !isPlaceLoading &&
         !isPlaceFetching && (
