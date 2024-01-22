@@ -27,7 +27,7 @@ const Weather = () => {
     queryKey: ["weather", currentLocation],
     queryFn: () =>
       fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unitValue),
-    enabled: !!currentLocation && !!currentWeather,
+    enabled: !!currentLocation && !currentWeather,
     retry: false,
     initialData: currentWeather as CurrentWeatherService,
   });
@@ -76,7 +76,11 @@ const Weather = () => {
     );
   }
 
-  if (!currentWeatherData || !currentLocation || isWeatherError) {
+  if (
+    (!currentWeatherData && !currentWeather) ||
+    !currentLocation ||
+    isWeatherError
+  ) {
     return (
       <EmptyState
         description="Something went wrong, please try again."
