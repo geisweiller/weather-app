@@ -14,8 +14,8 @@ import {
 const Weather = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const currentLocation = location.state;
-
+  const { location: currentLocation } = location.state;
+  const { weather: currentWeather } = location.state;
   const { storedValue: unitValue } = useLocalStorage("unit", "metric");
 
   const {
@@ -27,8 +27,9 @@ const Weather = () => {
     queryKey: ["weather", currentLocation],
     queryFn: () =>
       fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unitValue),
-    enabled: !!currentLocation,
+    enabled: !!currentLocation && !!currentWeather,
     retry: false,
+    initialData: currentWeather as CurrentWeatherService,
   });
 
   const { storedValue, setValue } = useLocalStorage("locations", "[]");
@@ -108,7 +109,7 @@ const Weather = () => {
             <Icon code={currentWeatherData?.current.weather[0].icon} />
             <div className="flex  flex-col items-centerjustify-center">
               <Text className="text-4xl font-bold">
-                {currentWeatherData?.current.temp}
+                {currentWeatherData?.current.temp.toFixed(0)}
                 {tempUnitConversion(unitValue)}
               </Text>
               <Text className=" first-letter:capitalize">
@@ -170,12 +171,12 @@ const Weather = () => {
                 <div className="flex gap-2 items-center">
                   <Icon code={day.weather[0].icon} />
                   <Text className="text-sm font-bold">
-                    {day.temp.day}
+                    {day.temp.day.toFixed(0)}
                     {tempUnitConversion(unitValue)}
                   </Text>
                 </div>
 
-                <Text className="hidden lg:block text-sm max-w-96 text-center">
+                <Text className="hidden md:block text-sm max-w-96 text-center">
                   {day.summary}
                 </Text>
 

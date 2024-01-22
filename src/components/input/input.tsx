@@ -1,4 +1,4 @@
-import { MagnifyingGlass } from "@phosphor-icons/react";
+import { MagnifyingGlass, XCircle } from "@phosphor-icons/react";
 interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
    * Query to search
@@ -21,16 +21,21 @@ export const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className="flex items-center bg-dark-blue rounded-lg p-2 gap-2 shadow-lg">
+    <div className="flex items-center bg-dark-blue bg-opacity-50 rounded-lg p-2 gap-2 shadow-lg">
       <MagnifyingGlass size={32} color="white" />
       <input
         type="text"
-        className="p-2 bg-dark-blue container text-light-gray border-transparent border font-Montserrat placeholder:text-light-gray"
+        className="bg-transparent container text-light-gray border-transparent border font-Montserrat placeholder:text-light-gray"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
         {...props}
       />
+      {query && (
+        <button type="button" onClick={() => setQuery("")}>
+          <XCircle size={32} color="white" />
+        </button>
+      )}
     </div>
   );
 };

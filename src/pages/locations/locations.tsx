@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
+import StarredLocation from "./starred-location";
 import { Button, Text, Input, Loader, Switch, Box } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { fetchDirectGeocoding } from "../../services/api";
@@ -67,7 +68,7 @@ const Locations = () => {
           className="flex flex-row shadow-none items-start bg-transparent border-transparent text-light-gray hover:bg-light-blue"
           onClick={() =>
             navigate(`/${location.name}`, {
-              state: { ...location },
+              state: { location: location, weather: null },
             })
           }
         >
@@ -102,22 +103,16 @@ const Locations = () => {
         </div>
       )}
 
-      {starredLocations?.map((location: GeocodingService) => (
-        <Button
-          key={location.lat + location.lon}
-          className="min-w-80 bg-light-blue border-light-blue p-5"
-          onClick={() => navigate(`/${location.name}`, { state: location })}
-        >
-          <div className="flex items-center justify-between w-full">
-            <Text className="text-1xl font-bold">
-              {location.name} ({location.state && `${location.state}, `}
-              {location.country})
-            </Text>
-          </div>
-        </Button>
-      ))}
+      {query.length < 4 &&
+        starredLocations?.map((location: GeocodingService) => (
+          <StarredLocation
+            key={location.lat + location.lon}
+            location={location}
+            unitValue={unitValue}
+          />
+        ))}
 
-      {!starredLocations?.length && (
+      {query.length < 4 && !starredLocations?.length && (
         <div className="flex p-2 container text-light-gray items-center justify-center">
           <Text className="text-xl">
             Your favorited locations will show up here
