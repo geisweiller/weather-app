@@ -1,8 +1,8 @@
+import { composeStories } from "@storybook/react";
 import { render, screen } from "@testing-library/react";
 import { expect, describe, it } from "vitest";
 
 import * as stories from "./text.stories";
-import { composeStories } from "@storybook/react";
 
 const { Primary } = composeStories(stories);
 

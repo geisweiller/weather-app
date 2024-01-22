@@ -1,13 +1,14 @@
-import { Text, Icon, Box, Button } from "../../components";
 import { Drop, Wind, Star } from "@phosphor-icons/react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { Text, Icon, Box, Button } from "../../components";
+import { useLocalStorage } from "../../hooks/use-local-storage";
 import { FetchCurrentWeather } from "../../services/api";
 import {
   tempUnitConversion,
   windUnitConversion,
 } from "../../utils/unit-conversion";
-import { useLocalStorage } from "../../hooks/use-local-storage";
 
 const Weather = () => {
   const location = useLocation();

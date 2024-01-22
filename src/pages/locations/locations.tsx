@@ -1,10 +1,11 @@
 import { useState } from "react";
+
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { FetchDirectGeocoding } from "../../services/api";
 import { Button, Text, Input, Loader, Toggler, Box } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
+import { FetchDirectGeocoding } from "../../services/api";
 
 const Locations = () => {
   const navigate = useNavigate();
@@ -96,6 +97,13 @@ const Locations = () => {
           <Text>Clear sky</Text>
         </Button>
       ))}
+      {!favoritedLocations?.length && (
+        <div className="flex p-2 container text-light-gray items-center justify-center">
+          <Text className="text-xl">
+            Your favorited locations will show up here
+          </Text>
+        </div>
+      )}
     </Box>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { cn } from "../../utils/class-names";
 
 interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
