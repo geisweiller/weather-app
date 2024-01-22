@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { CloudSun } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +36,10 @@ const Locations = () => {
   return (
     <Box className=" h-max">
       <div className="flex justify-between">
-        <Text className="text-3xl font-bold">Weather App</Text>
+        <span className="flex items-center gap-2">
+          <Text className="text-3xl font-bold">Weather</Text>
+          <CloudSun size={40} color="white" />
+        </span>
 
         <Switch
           options={[

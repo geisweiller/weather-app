@@ -28,7 +28,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
   return (
     <Button
       key={location.lat + location.lon}
-      className="min-w-80 bg-dark-blue border-dark-blue p-5 min-h-24 items-center justify-center"
+      className="bg-dark-blue border-dark-blue p-5 min-h-24 items-center justify-center"
       onClick={() =>
         navigate(`/${location.name}`, {
           state: { location, weather: currentWeatherData },
@@ -37,7 +37,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
     >
       <div className="flex items-center justify-between w-full">
         <span className="flex flex-col items-start">
-          <Text className="text-1xl font-bold">
+          <Text className="text-1xl font-bold text-left">
             {location.name} ({location.state && `${location.state}, `}
             {location.country})
           </Text>

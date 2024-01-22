@@ -112,7 +112,7 @@ const Weather = () => {
           <div className="flex gap-2 items-center">
             <Icon code={currentWeatherData?.current.weather[0].icon} />
             <div className="flex  flex-col items-centerjustify-center">
-              <Text className="text-4xl font-bold">
+              <Text className="text-4xl font-bold text-center">
                 {currentWeatherData?.current.temp.toFixed(0)}
                 {tempUnitConversion(unitValue)}
               </Text>
@@ -124,11 +124,11 @@ const Weather = () => {
 
           <div className="flex gap-10 items-center w-full justify-center">
             <span className="flex flex-col items-center gap-1">
-              <Drop size={32} color="white" />
+              <Drop size={32} color="dodgerblue" />
               <Text>{currentWeatherData?.current.humidity}%</Text>
             </span>
             <span className="flex flex-col items-center gap-1">
-              <Wind size={32} color="white" />
+              <Wind size={32} color="gray" />
               <Text>
                 {currentWeatherData?.current.wind_speed}
                 {windUnitConversion(unitValue)}
@@ -180,7 +180,7 @@ const Weather = () => {
                   </Text>
                 </div>
 
-                <Text className="hidden md:block text-sm max-w-96 text-center">
+                <Text className="hidden sm:block text-xs max-w-80 text-center">
                   {day.summary}
                 </Text>
 
