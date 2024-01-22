@@ -17,7 +17,7 @@ export const Box = ({ className, children }: BoxProps) => {
   return (
     <div
       className={cn(
-        "bg-dark-blue gap-5 flex flex-col p-10 rounded-lg bg-opacity-40 shadow-xl max-w-4xl flex-1 w-full",
+        "bg-dark-blue gap-5 flex flex-col p-10 rounded-lg bg-opacity-40 shadow-2xl max-w-4xl flex-1 w-full",
         className
       )}
     >

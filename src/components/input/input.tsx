@@ -1,3 +1,4 @@
+import { MagnifyingGlass } from "@phosphor-icons/react";
 interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
    * Query to search
@@ -20,10 +21,11 @@ export const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className="relative">
+    <div className="flex items-center bg-dark-blue rounded-lg p-2 gap-2">
+      <MagnifyingGlass size={32} color="white" />
       <input
         type="text"
-        className="p-2 rounded-lg bg-dark-blue bg-opacity-50 container text-light-gray border-dark-blue border font-Montserrat placeholder:text-light-gray"
+        className="p-2 bg-dark-blue bg-opacity-50 container shadow-lg text-light-gray border-transparent border font-Montserrat placeholder:text-light-gray"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
