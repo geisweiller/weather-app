@@ -14,7 +14,8 @@ const Weather = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const currentLocation = location.state;
-  const { unit } = location.state;
+
+  const { storedValue: unitValue } = useLocalStorage("unit", "metric");
 
   const {
     data: currentWeatherData,
@@ -23,7 +24,7 @@ const Weather = () => {
   } = useQuery({
     queryKey: ["weather", currentLocation],
     queryFn: () =>
-      fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unit),
+      fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unitValue),
     enabled: !!currentLocation,
     retry: false,
   });
@@ -112,7 +113,7 @@ const Weather = () => {
             <div className="flex  flex-col items-centerjustify-center">
               <Text className="text-4xl font-bold">
                 {currentWeatherData?.current.temp}
-                {tempUnitConversion(unit)}
+                {tempUnitConversion(unitValue)}
               </Text>
               <Text className=" first-letter:capitalize">
                 {currentWeatherData?.current.weather[0].description}
@@ -129,7 +130,7 @@ const Weather = () => {
               <Wind size={32} color="white" />
               <Text>
                 {currentWeatherData?.current.wind_speed}
-                {windUnitConversion(unit)}
+                {windUnitConversion(unitValue)}
               </Text>
             </span>
           </div>
@@ -162,7 +163,7 @@ const Weather = () => {
 
       {currentWeatherData?.daily && (
         <Box className="bg-opacity-70">
-          <Text className="text-xl font-bold">Next 7 days</Text>
+          <Text className="text-xl font-bold">Forecast</Text>
 
           <div className="flex flex-col gap-5">
             {currentWeatherData?.daily.map((day) => (
@@ -174,7 +175,7 @@ const Weather = () => {
                   <Icon code={day.weather[0].icon} />
                   <Text className="text-sm font-bold">
                     {day.temp.day}
-                    {tempUnitConversion(unit)}
+                    {tempUnitConversion(unitValue)}
                   </Text>
                 </div>
 
@@ -192,7 +193,7 @@ const Weather = () => {
                     <Wind size={32} color="white" />
                     <Text className="text-sm">
                       {day.wind_speed}
-                      {windUnitConversion(unit)}
+                      {windUnitConversion(unitValue)}
                     </Text>
                   </span>
                 </div>

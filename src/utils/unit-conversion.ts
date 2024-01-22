@@ -7,7 +7,7 @@ const tempUnitConversion = (unit: string) => {
 
 const windUnitConversion = (unit: string) => {
   if (unit === "metric") {
-    return "km/h";
+    return "m/s";
   }
   return "mph";
 };

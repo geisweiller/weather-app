@@ -8,9 +8,9 @@ import { useLocalStorage } from "../../hooks/use-local-storage";
 import { fetchDirectGeocoding } from "../../services/api";
 
 const Locations = () => {
-  const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const [unit, setUnit] = useState("metric");
+
+  const navigate = useNavigate();
 
   const {
     data: currentLocationData,
@@ -22,9 +22,13 @@ const Locations = () => {
     enabled: query.length > 3,
   });
 
-  const { storedValue } = useLocalStorage("locations", "[]");
+  const { storedValue: storedLocations } = useLocalStorage("locations", "[]");
+  const { storedValue: unitValue, setValue: setUnitValue } = useLocalStorage(
+    "unit",
+    "metric"
+  );
 
-  const favoritedLocations = JSON.parse(storedValue);
+  const starredLocations = JSON.parse(storedLocations);
 
   return (
     <Box className=" h-max">
@@ -36,15 +40,17 @@ const Locations = () => {
             {
               id: "metric",
               label: "°C",
-              selected: unit === "metric",
+              selected: unitValue === "metric",
             },
             {
               id: "imperial",
               label: "°F",
-              selected: unit === "imperial",
+              selected: unitValue === "imperial",
             },
           ]}
-          onClick={setUnit}
+          onClick={(id) => {
+            setUnitValue(id);
+          }}
         />
       </div>
 
@@ -60,7 +66,7 @@ const Locations = () => {
           className="flex flex-row shadow-none items-start bg-transparent border-transparent text-light-gray hover:bg-light-blue"
           onClick={() =>
             navigate(`/${location.name}`, {
-              state: { ...location, unit },
+              state: { ...location },
             })
           }
         >
@@ -87,7 +93,7 @@ const Locations = () => {
           </div>
         )}
 
-      {favoritedLocations?.map((location: GeocodingService) => (
+      {starredLocations?.map((location: GeocodingService) => (
         <Button
           className="min-w-80 bg-light-blue border-light-blue p-5"
           onClick={() => navigate(`/${location.name}`, { state: location })}
@@ -103,7 +109,7 @@ const Locations = () => {
         </Button>
       ))}
 
-      {!favoritedLocations?.length && (
+      {!starredLocations?.length && (
         <div className="flex p-2 container text-light-gray items-center justify-center">
           <Text className="text-xl">
             Your favorited locations will show up here
