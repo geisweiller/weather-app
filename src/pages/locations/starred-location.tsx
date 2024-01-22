@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Loader, Text } from "../../components";
+import { Button, Icon, Loader, Text } from "../../components";
 import { fetchCurrentWeather } from "../../services/api";
 import { tempUnitConversion } from "../../utils/unit-conversion";
 
@@ -28,7 +28,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
   return (
     <Button
       key={location.lat + location.lon}
-      className="min-w-80 bg-dark-blue border-dark-blue p-5"
+      className="min-w-80 bg-dark-blue border-dark-blue p-5 min-h-24 items-center justify-center"
       onClick={() =>
         navigate(`/${location.name}`, {
           state: { location, weather: currentWeatherData },
@@ -48,10 +48,17 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
 
         {isWeatherFetching && isWeatherLoading && <Loader />}
         {currentWeatherData && (
-          <Text className="text-2xl font-bold">
-            {currentWeatherData?.current.temp.toFixed(0)}
-            {tempUnitConversion(unitValue)}
-          </Text>
+          <div className="flex items-center">
+            <Text className="text-2xl font-bold">
+              {currentWeatherData?.current.temp.toFixed(0)}
+              {tempUnitConversion(unitValue)}
+            </Text>
+            <Icon
+              className="hidden sm:block"
+              code={currentWeatherData?.current.weather[0].icon}
+              width={80}
+            />
+          </div>
         )}
       </div>
     </Button>
