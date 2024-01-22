@@ -98,6 +98,7 @@ const Weather = () => {
         >
           <Text className="text-sm">Back</Text>
         </Button>
+
         <div className="flex flex-col items-center [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
           <div className="flex items-center gap-5 justify-between">
             <Text className="text-2xl font-bold">
@@ -106,6 +107,7 @@ const Weather = () => {
               {currentLocation.country})
             </Text>
           </div>
+
           <div className="flex gap-2 items-center">
             <Icon code={currentWeatherData?.current.weather[0].icon} />
             <div className="flex  flex-col items-centerjustify-center">
@@ -116,6 +118,7 @@ const Weather = () => {
               <Text>{currentWeatherData?.current.weather[0].description}</Text>
             </div>
           </div>
+
           <div className="flex gap-2 items-center w-full justify-center">
             <span className="flex flex-col items-center gap-1">
               <Drop size={32} color="white" />
@@ -130,6 +133,7 @@ const Weather = () => {
             </span>
           </div>
         </div>
+
         <Button
           className="w-min bg-dark-blue text-sm border-dark-blue"
           onClick={handleLocationFavorite}
@@ -141,6 +145,7 @@ const Weather = () => {
           />
         </Button>
       </div>
+
       {currentWeatherData?.alerts && (
         <Box>
           <Text className="text-xl font-bold">Alerts</Text>
@@ -149,9 +154,11 @@ const Weather = () => {
           </Text>
         </Box>
       )}
+
       {currentWeatherData?.daily && (
         <Box className="bg-opacity-70">
           <Text className="text-xl font-bold">Next 7 days</Text>
+
           <div className="flex flex-col gap-5">
             {currentWeatherData?.daily.map((day) => (
               <div
@@ -165,11 +172,13 @@ const Weather = () => {
                     {tempUnitConversion(unit)}
                   </Text>
                 </div>
+
                 <div className="flex gap-3 items-center">
                   <span className="flex flex-col items-center gap-1">
                     <Drop size={32} color="white" />
                     <Text className="text-sm">{day.humidity}%</Text>
                   </span>
+
                   <span className="flex flex-col items-center gap-1">
                     <Wind size={32} color="white" />
                     <Text className="text-sm">

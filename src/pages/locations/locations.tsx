@@ -30,6 +30,7 @@ const Locations = () => {
     <Box className=" h-max">
       <div className="flex justify-between">
         <Text className="text-3xl font-bold">Weather App</Text>
+
         <Toggler
           options={[
             {
@@ -52,6 +53,7 @@ const Locations = () => {
         query={query}
         setQuery={setQuery}
       />
+
       {currentLocationData?.map((location) => (
         <Button
           key={location.lat + location.lon}
@@ -69,11 +71,13 @@ const Locations = () => {
           </Text>
         </Button>
       ))}
+
       {(isPlaceLoading || isPlaceFetching) && !currentLocationData?.length && (
         <div className="flex justify-center">
           <Loader />
         </div>
       )}
+
       {!currentLocationData?.length &&
         query.length > 3 &&
         !isPlaceLoading &&
@@ -82,6 +86,7 @@ const Locations = () => {
             <Text>No results found for "{query}"</Text>
           </div>
         )}
+
       {favoritedLocations?.map((location: GeocodingService) => (
         <Button
           className="min-w-80 bg-light-blue border-light-blue p-5"
@@ -97,6 +102,7 @@ const Locations = () => {
           <Text>Clear sky</Text>
         </Button>
       ))}
+
       {!favoritedLocations?.length && (
         <div className="flex p-2 container text-light-gray items-center justify-center">
           <Text className="text-xl">
