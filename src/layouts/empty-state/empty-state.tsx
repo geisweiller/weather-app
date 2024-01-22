@@ -10,7 +10,10 @@ const EmptyState = ({ description, buttonText, onClick }: EmptyStateProps) => {
   return (
     <div className="flex flex-col items-center justify-center h-screen gap-6">
       <Text className="text-2xl font-bold">{description}</Text>
-      <Button className="bg-dark-blue w-fit border-dark-blue" onClick={onClick}>
+      <Button
+        className="bg-dark-blue w-fit border-dark-blue px-5"
+        onClick={onClick}
+      >
         <Text>{buttonText}</Text>
       </Button>
     </div>

@@ -28,7 +28,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
   return (
     <Button
       key={location.lat + location.lon}
-      className="bg-dark-blue border-dark-blue p-5 min-h-24 items-center justify-center"
+      className="bg-dark-blue border-dark-blue bg-opacity-70 p-5 min-h-32 items-center justify-center"
       onClick={() =>
         navigate(`/${location.name}`, {
           state: { location, weather: currentWeatherData },

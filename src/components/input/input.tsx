@@ -21,7 +21,7 @@ export const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className="flex items-center bg-dark-blue bg-opacity-50 rounded-lg p-2 gap-2 shadow-lg">
+    <div className="flex items-center bg-dark-blue bg-opacity-50 rounded-lg p-2 gap-2 ">
       <MagnifyingGlass size={32} color="white" />
       <input
         type="text"

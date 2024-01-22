@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <div className="bg-gradient-to-br from-bg-white to-bg-blue w-screen min-h-screen h-full flex flex-col p-5 items-center">
+      <div className="bg-gradient-to-br from-bg-blue to-bg-white w-screen min-h-screen h-full flex flex-col p-5 items-center">
         <Routes />
       </div>
     </QueryClientProvider>

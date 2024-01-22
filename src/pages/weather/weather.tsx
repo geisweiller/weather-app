@@ -94,7 +94,7 @@ const Weather = () => {
     <div className="flex flex-col gap-10 w-full max-w-4xl">
       <div className="flex bg-transparent border-transparent shadow-none items-center justify-between">
         <Button
-          className="w-min bg-dark-blue text-sm border-dark-blue"
+          className="w-min bg-dark-blue text-sm border-dark-blue px-5"
           onClick={() => navigate("/")}
         >
           <Text className="text-sm">Back</Text>
@@ -173,6 +173,12 @@ const Weather = () => {
                 className="flex items-center justify-between gap-5"
               >
                 <div className="flex gap-2 items-center">
+                  <Text className="text-sm font-bold">
+                    {new Date(day.dt * 1000).toLocaleDateString("en-US", {
+                      weekday: "short",
+                    })}
+                  </Text>
+
                   <Icon code={day.weather[0].icon} />
                   <Text className="text-sm font-bold">
                     {day.temp.day.toFixed(0)}
