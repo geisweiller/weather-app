@@ -9,7 +9,7 @@ import * as stories from "./loader.stories";
 const { Primary } = composeStories(stories);
 
 describe("Primary", () => {
-  it("should render Primary", () => {
+  it("should render Loader", () => {
     render(<Primary />);
 
     expect(screen.getByText("Loading...")).toBeTruthy();

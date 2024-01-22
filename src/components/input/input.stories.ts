@@ -17,11 +17,3 @@ export const Primary: Story = {
     placeholder: "Search for a city",
   },
 };
-
-export const Empty: Story = {
-  args: {
-    query: "",
-    setQuery: (query) => console.log(`Query: ${query}`),
-    placeholder: "Search for a city",
-  },
-};

@@ -7,7 +7,7 @@ import * as stories from "./text.stories";
 const { Primary } = composeStories(stories);
 
 describe("Primary", () => {
-  it("should render Primary", () => {
+  it("should render Text", () => {
     render(<Primary />);
 
     expect(screen.getByText("Hello World")).toBeTruthy();

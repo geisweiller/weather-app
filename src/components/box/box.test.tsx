@@ -7,7 +7,7 @@ import * as stories from "./box.stories";
 const { Primary } = composeStories(stories);
 
 describe("Primary", () => {
-  it("should render Primary", () => {
+  it("should render Box", () => {
     render(<Primary />);
 
     expect(screen.getByText("Hello 👋, I am a Box component.")).toBeTruthy();

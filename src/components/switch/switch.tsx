@@ -1,8 +1,9 @@
 import { cn } from "../../utils/class-names";
 import { Text } from "../text/text";
-interface TogglerProps {
+
+interface SwitchProps {
   /**
-   * Toggle options
+   * Switch options
    */
   options: {
     id: string;
@@ -15,7 +16,7 @@ interface TogglerProps {
   onClick: (id: string) => void;
 }
 
-export const Toggler = ({ options, onClick }: TogglerProps) => {
+export const Switch = ({ options, onClick }: SwitchProps) => {
   return (
     <div className="flex p-1 border border-light-blue bg-light-blue rounded-lg min-w-20 shadow-lg">
       {options.map((option) => (

@@ -4,10 +4,6 @@ import { getLocalStorageItem } from "../utils/local-storage";
 
 export function useLocalStorage(key: string, initialValue: string) {
   const [storedValue, setStoredValue] = useState<string>(() => {
-    if (typeof window === "undefined") {
-      return initialValue;
-    }
-
     try {
       const item = getLocalStorageItem(key);
       return item || initialValue;

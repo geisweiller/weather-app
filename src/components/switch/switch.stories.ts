@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Toggler } from "./toggler";
+import { Switch } from "./switch";
 
 const meta = {
   title: "Components/Toggler",
-  component: Toggler,
-} satisfies Meta<typeof Toggler>;
+  component: Switch,
+} satisfies Meta<typeof Switch>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

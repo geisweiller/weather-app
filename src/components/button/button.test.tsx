@@ -8,7 +8,7 @@ const { Primary } = composeStories(stories);
 
 describe("Primary", () => {
   console.log = vitest.fn();
-  it("should render a button", () => {
+  it("should render Button", () => {
     render(<Primary />);
 
     expect(screen.getByText("Hello World")).toBeTruthy();
