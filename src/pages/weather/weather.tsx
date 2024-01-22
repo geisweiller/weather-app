@@ -9,6 +9,7 @@ import {
   tempUnitConversion,
   windUnitConversion,
 } from "../../utils/unit-conversion";
+import { EmptyState } from "../../layouts";
 
 const Weather = () => {
   const location = useLocation();
@@ -75,17 +76,11 @@ const Weather = () => {
 
   if (!currentWeatherData || !currentLocation) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen gap-6">
-        <Text className="text-2xl font-bold">
-          Something went wrong, please try again.
-        </Text>
-        <Button
-          className="bg-dark-blue w-fit border-dark-blue"
-          onClick={() => navigate("/")}
-        >
-          <Text>Back to search</Text>
-        </Button>
-      </div>
+      <EmptyState
+        description="Something went wrong, please try again."
+        buttonText="Back to search"
+        onClick={() => navigate("/")}
+      />
     );
   }
 
