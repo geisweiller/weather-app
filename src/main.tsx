@@ -4,8 +4,8 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { Locations, NotFound, Weather } from "./pages";
 import "./index.css";
-import { Locations, Weather } from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/:location",
     element: <Weather />,
+    errorElement: <NotFound />,
   },
 ]);
 

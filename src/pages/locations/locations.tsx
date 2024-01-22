@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Text, Input, Loader, Toggler, Box } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
-import { FetchDirectGeocoding } from "../../services/api";
+import { fetchDirectGeocoding } from "../../services/api";
 
 const Locations = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Locations = () => {
     isFetching: isPlaceFetching,
   } = useQuery({
     queryKey: ["city", query],
-    queryFn: () => FetchDirectGeocoding(query),
+    queryFn: () => fetchDirectGeocoding(query),
     enabled: query.length > 3,
   });
 
@@ -97,9 +97,9 @@ const Locations = () => {
               {location.name} ({location.state && `${location.state}, `}
               {location.country})
             </Text>
-            <Text className="text-2xl font-bold">30 °C</Text>
+            {/* <Text className="text-2xl font-bold">30 °C</Text> */}
           </div>
-          <Text>Clear sky</Text>
+          {/* <Text>Clear sky</Text> */}
         </Button>
       ))}
 

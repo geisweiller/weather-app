@@ -16,7 +16,7 @@ export default {
       gray: "#808080",
       "light-gray": "#f2f2f2",
     },
-    screens: {},
+
     fontFamily: {
       Montserrat: ["Montserrat", "sans-serif"],
     },

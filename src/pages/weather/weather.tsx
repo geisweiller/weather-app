@@ -1,10 +1,10 @@
-import { Drop, Wind, Star } from "@phosphor-icons/react";
+import { Drop, Wind, Star, Warning } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Text, Icon, Box, Button, Loader } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
-import { FetchCurrentWeather } from "../../services/api";
+import { fetchCurrentWeather } from "../../services/api";
 import {
   tempUnitConversion,
   windUnitConversion,
@@ -23,10 +23,9 @@ const Weather = () => {
   } = useQuery({
     queryKey: ["weather", currentLocation],
     queryFn: () =>
-      FetchCurrentWeather(currentLocation.lat, currentLocation.lon, unit),
+      fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unit),
     enabled: !!currentLocation,
     retry: false,
-    refetchOnWindowFocus: true,
   });
 
   const { storedValue, setValue } = useLocalStorage("locations", "[]");
@@ -76,7 +75,7 @@ const Weather = () => {
   if (!currentWeatherData || !currentLocation) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-6">
-        <Text className="text-2xl">
+        <Text className="text-2xl font-bold">
           Something went wrong, please try again.
         </Text>
         <Button
@@ -115,11 +114,13 @@ const Weather = () => {
                 {currentWeatherData?.current.temp}
                 {tempUnitConversion(unit)}
               </Text>
-              <Text>{currentWeatherData?.current.weather[0].description}</Text>
+              <Text className=" first-letter:capitalize">
+                {currentWeatherData?.current.weather[0].description}
+              </Text>
             </div>
           </div>
 
-          <div className="flex gap-2 items-center w-full justify-center">
+          <div className="flex gap-10 items-center w-full justify-center">
             <span className="flex flex-col items-center gap-1">
               <Drop size={32} color="white" />
               <Text>{currentWeatherData?.current.humidity}%</Text>
@@ -140,7 +141,7 @@ const Weather = () => {
         >
           <Star
             size={32}
-            color="yellow"
+            color="#d4af37"
             {...(isFavorited() && { weight: "fill" })}
           />
         </Button>
@@ -148,7 +149,11 @@ const Weather = () => {
 
       {currentWeatherData?.alerts && (
         <Box>
-          <Text className="text-xl font-bold">Alerts</Text>
+          <span className="flex items-center gap-5">
+            <Warning size={32} color="white" />
+            <Text className="text-xl font-bold">Alerts</Text>
+          </span>
+
           <Text className="text-sm">
             {currentWeatherData?.alerts[0].description}
           </Text>
@@ -173,7 +178,11 @@ const Weather = () => {
                   </Text>
                 </div>
 
-                <div className="flex gap-3 items-center">
+                <Text className="hidden lg:block text-sm  max-w-96 text-center">
+                  {day.summary}
+                </Text>
+
+                <div className="flex gap-3 items-center w-32 justify-between">
                   <span className="flex flex-col items-center gap-1">
                     <Drop size={32} color="white" />
                     <Text className="text-sm">{day.humidity}%</Text>
