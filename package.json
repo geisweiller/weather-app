@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "generate-component": "node ./scripts/generate-component",
     "test": "vitest --config ./vitest.config.ts",
+    "coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -40,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "@vitest/coverage-v8": "^1.2.1",
     "autoprefixer": "^10.4.17",
     "eslint": "^8.55.0",
     "eslint-plugin-import": "^2.29.1",
