@@ -2,7 +2,7 @@ import { Drop, Wind, Star } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Text, Icon, Box, Button } from "../../components";
+import { Text, Icon, Box, Button, Loader } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { FetchCurrentWeather } from "../../services/api";
 import {
@@ -25,6 +25,8 @@ const Weather = () => {
     queryFn: () =>
       FetchCurrentWeather(currentLocation.lat, currentLocation.lon, unit),
     enabled: !!currentLocation,
+    retry: false,
+    refetchOnWindowFocus: true,
   });
 
   const { storedValue, setValue } = useLocalStorage("locations", "[]");
@@ -62,6 +64,30 @@ const Weather = () => {
     );
     return existsIndex !== -1;
   };
+
+  if (isWeatherLoading || isWeatherFetching) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!currentWeatherData || !currentLocation) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen gap-6">
+        <Text className="text-2xl">
+          Something went wrong, please try again.
+        </Text>
+        <Button
+          className="bg-dark-blue w-fit border-dark-blue"
+          onClick={() => navigate("/")}
+        >
+          <Text>Back to search</Text>
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-10">

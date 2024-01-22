@@ -53,9 +53,9 @@ const Locations = () => {
         setQuery={setQuery}
       />
       {currentLocationData?.map((location) => (
-        <button
+        <Button
           key={location.lat + location.lon}
-          className="p-2 container flex items-start bg-transparent text-light-gray hover:bg-light-blue hover:text-white hover:cursor-pointer gap-1"
+          className="flex flex-row shadow-none items-start bg-transparent border-transparent text-light-gray hover:bg-light-blue"
           onClick={() =>
             navigate(`/${location.name}`, {
               state: { ...location, unit },
@@ -67,7 +67,7 @@ const Locations = () => {
             ({location.state && `${location.state}, `}
             {location.country})
           </Text>
-        </button>
+        </Button>
       ))}
       {(isPlaceLoading || isPlaceFetching) && !currentLocationData?.length && (
         <div className="flex justify-center">
