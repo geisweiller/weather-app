@@ -1,4 +1,3 @@
- 
 import { useEffect, useState } from "react";
 
 import {
@@ -51,7 +50,7 @@ export function useLocalStorage(key: string, initialValue: string) {
       console.log(error);
       setValue(initialValue);
     }
-  }, [key]);
+  }, [key, initialValue, setValue]);
 
   return {
     storedValue,
