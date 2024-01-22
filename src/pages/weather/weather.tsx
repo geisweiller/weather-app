@@ -4,12 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Text, Icon, Box, Button, Loader } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
+import { EmptyState } from "../../layouts";
 import { fetchCurrentWeather } from "../../services/api";
 import {
   tempUnitConversion,
   windUnitConversion,
 } from "../../utils/unit-conversion";
-import { EmptyState } from "../../layouts";
 
 const Weather = () => {
   const location = useLocation();
