@@ -2,11 +2,11 @@ import { cn } from "../../utils/class-names";
 
 interface CardProps extends React.HTMLAttributes<HTMLButtonElement> {
   /**
-   * Card content
+   * Button content
    */
   children: React.ReactNode;
   /**
-   * Card className
+   * Button className
    */
   className?: string;
 }
