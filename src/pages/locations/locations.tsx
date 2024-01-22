@@ -104,6 +104,7 @@ const Locations = () => {
 
       {starredLocations?.map((location: GeocodingService) => (
         <Button
+          key={location.lat + location.lon}
           className="min-w-80 bg-light-blue border-light-blue p-5"
           onClick={() => navigate(`/${location.name}`, { state: location })}
         >

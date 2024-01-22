@@ -86,7 +86,7 @@ const Weather = () => {
   }
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 w-full max-w-4xl">
       <div className="flex bg-transparent border-transparent shadow-none items-center justify-between">
         <Button
           className="w-min bg-dark-blue text-sm border-dark-blue"
@@ -161,7 +161,7 @@ const Weather = () => {
         <Box className="bg-opacity-70">
           <Text className="text-xl font-bold">Forecast</Text>
 
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 container">
             {currentWeatherData?.daily.map((day) => (
               <div
                 key={day.dt}
@@ -175,18 +175,18 @@ const Weather = () => {
                   </Text>
                 </div>
 
-                <Text className="hidden lg:block text-sm  max-w-96 text-center">
+                <Text className="hidden lg:block text-sm max-w-96 text-center">
                   {day.summary}
                 </Text>
 
                 <div className="flex gap-3 items-center w-32 justify-between">
                   <span className="flex flex-col items-center gap-1">
-                    <Drop size={32} color="white" />
+                    <Drop size={24} color="white" />
                     <Text className="text-sm">{day.humidity}%</Text>
                   </span>
 
                   <span className="flex flex-col items-center gap-1">
-                    <Wind size={32} color="white" />
+                    <Wind size={24} color="white" />
                     <Text className="text-sm">
                       {day.wind_speed}
                       {windUnitConversion(unitValue)}
