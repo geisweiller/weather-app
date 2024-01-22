@@ -22,6 +22,7 @@ const Weather = () => {
     data: currentWeatherData,
     isLoading: isWeatherLoading,
     isFetching: isWeatherFetching,
+    isError: isWeatherError,
   } = useQuery({
     queryKey: ["weather", currentLocation],
     queryFn: () =>
@@ -74,7 +75,7 @@ const Weather = () => {
     );
   }
 
-  if (!currentWeatherData || !currentLocation) {
+  if (!currentWeatherData || !currentLocation || isWeatherError) {
     return (
       <EmptyState
         description="Something went wrong, please try again."

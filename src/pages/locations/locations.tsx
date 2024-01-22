@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import { Button, Text, Input, Loader, Toggler, Box } from "../../components";
+import { Button, Text, Input, Loader, Switch, Box } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { fetchDirectGeocoding } from "../../services/api";
 
@@ -14,8 +14,9 @@ const Locations = () => {
 
   const {
     data: currentLocationData,
-    isLoading: isPlaceLoading,
-    isFetching: isPlaceFetching,
+    isLoading: isLocationLoading,
+    isFetching: isLocationFetching,
+    isError: isLocationError,
   } = useQuery({
     queryKey: ["city", query],
     queryFn: () => fetchDirectGeocoding(query),
@@ -35,7 +36,7 @@ const Locations = () => {
       <div className="flex justify-between">
         <Text className="text-3xl font-bold">Weather App</Text>
 
-        <Toggler
+        <Switch
           options={[
             {
               id: "metric",
@@ -78,20 +79,28 @@ const Locations = () => {
         </Button>
       ))}
 
-      {(isPlaceLoading || isPlaceFetching) && !currentLocationData?.length && (
-        <div className="flex justify-center">
-          <Loader />
-        </div>
-      )}
+      {(isLocationLoading || isLocationFetching) &&
+        !currentLocationData?.length && (
+          <div className="flex justify-center">
+            <Loader />
+          </div>
+        )}
 
       {!currentLocationData?.length &&
         query.length > 3 &&
-        !isPlaceLoading &&
-        !isPlaceFetching && (
+        !isLocationLoading &&
+        !isLocationFetching &&
+        !isLocationError && (
           <div className="p-2 container text-light-gray">
             <Text>No results found for "{query}"</Text>
           </div>
         )}
+
+      {isLocationError && (
+        <div className="p-2 container text-light-gray">
+          <Text>Something went wrong, please try again.</Text>
+        </div>
+      )}
 
       {starredLocations?.map((location: GeocodingService) => (
         <Button
@@ -103,9 +112,7 @@ const Locations = () => {
               {location.name} ({location.state && `${location.state}, `}
               {location.country})
             </Text>
-            {/* <Text className="text-2xl font-bold">30 °C</Text> */}
           </div>
-          {/* <Text>Clear sky</Text> */}
         </Button>
       ))}
 
