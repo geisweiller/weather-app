@@ -4,19 +4,11 @@ interface TogglerProps {
   /**
    * Toggle options
    */
-  options: [
-    {
-      id: string;
-      label: string;
-      selected: boolean;
-    },
-    {
-      id: string;
-      label: string;
-      selected: boolean;
-    }
-  ];
-
+  options: {
+    id: string;
+    label: string;
+    selected: boolean;
+  }[];
   /**
    * Action to execute when a option is selected
    */
