@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Icon, Loader, Text } from "../../components";
 import { fetchCurrentWeather } from "../../services/api";
+import { GeocodingService } from "../../services/types/geocoding";
 import { tempUnitConversion } from "../../utils/unit-conversion";
 
 interface StarredLocationProps {

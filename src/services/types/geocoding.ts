@@ -1,4 +1,4 @@
-interface GeocodingService {
+export interface GeocodingService {
   country: string;
   lat: number;
   local_names: { de: string };

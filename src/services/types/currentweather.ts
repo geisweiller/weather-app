@@ -1,4 +1,4 @@
-interface CurrentWeatherService {
+export interface CurrentWeatherService {
   lat: number;
   lon: number;
   timezone: string;

@@ -6,6 +6,7 @@ import { Text, Icon, Box, Button, Loader } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { EmptyState } from "../../layouts";
 import { fetchCurrentWeather } from "../../services/api";
+import { CurrentWeatherService } from "../../services/types/currentweather";
 import {
   tempUnitConversion,
   windUnitConversion,
@@ -23,7 +24,7 @@ const Weather = () => {
     isLoading: isWeatherLoading,
     isFetching: isWeatherFetching,
     isError: isWeatherError,
-  } = useQuery({
+  } = useQuery<CurrentWeatherService>({
     queryKey: ["weather", currentLocation],
     queryFn: () =>
       fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unitValue),

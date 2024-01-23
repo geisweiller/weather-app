@@ -8,6 +8,7 @@ import StarredLocation from "./starred-location";
 import { Button, Text, Input, Loader, Switch, Box } from "../../components";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { fetchDirectGeocoding } from "../../services/api";
+import { GeocodingService } from "../../services/types/geocoding";
 
 const Locations = () => {
   const [query, setQuery] = useState("");
