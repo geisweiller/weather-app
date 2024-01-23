@@ -1,30 +1,73 @@
-# React + TypeScript + Vite
+# Weather app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You can see the app live [here](https://geisweiller.github.io/weather-app/).
 
-Currently, two official plugins are available:
+![ScreenRecording2024-01-23at11 35 38-ezgif com-video-to-gif-converter](https://github.com/geisweiller/global-components/assets/50842954/eec853ce-3973-4826-9f27-37cd24d3f055)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Description:
 
-## Expanding the ESLint configuration
+- This is a simple weather app that shows the weather forecast for searched cities.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Features:
+    - Search for any city in the world.
+    - Shows the current weather, humidity, wind speed, alerts and forecast for next 7 days.
+    - Switch between Celsius and Fahrenheit
+    - Star your favorite cities and access them quickly.
 
-- Configure the top-level `parserOptions` property like this:
+- The app uses the [OpenWeatherMap](https://openweathermap.org/) API to get the weather data.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- The app is built with React + Vite + Typescript.
+
+- The app is tested with Vitest + React Testing Library.
+
+- The app is deployed in Github Pages.
+
+## Instructions:
+
+1. Install dependencies with your favorite package manager
+
+```
+$ pnpm install
+
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Set OPEN_WEATHER_API_KEY environment variable
+
+```
+$ export OPEN_WEATHER_API_KEY=<your api key>
+
+```
+
+3. To run the app
+
+```
+$ cd weather-app
+$ pnpm dev
+
+```
+
+4. Open up your browser and browser your server's IP
+
+e.g:
+
+```
+
+http://localhost:5173/weather-app/
+
+
+```
+
+pnpm test
+
+```
+
+5. To collect tests coverage
+
+```
+
+$ npm coverage
+
+```
+$ pnpm coverage
+
+```
