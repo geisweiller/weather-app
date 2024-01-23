@@ -9,3 +9,5 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    environment:
+      - OPEN_WEATHER_API_KEY=${OPEN_WEATHER_API_KEY}
