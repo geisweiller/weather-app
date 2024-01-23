@@ -25,7 +25,7 @@ export const Input = ({
       <MagnifyingGlass size={32} color="white" />
       <input
         type="text"
-        className="bg-transparent container text-light-gray border-transparent border font-Montserrat placeholder:text-light-gray"
+        className="bg-transparent container px-1 text-light-gray border-transparent border font-Montserrat placeholder:text-light-gray"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
