@@ -15,7 +15,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/weather-app",
+    basename: "/weather-app/",
   }
 );
 
