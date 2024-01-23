@@ -14,13 +14,29 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
-
-      - name: Install dependencies and Build Project
-        uses: creepinson/pnpm-action@master
         with:
-          arguments: '["install", "build"]'
+          version: 8.10.4
+          run_install: false
+
+      - name: Pnpm install
+        run: pnpm install --no-frozen-lockfile
+        shell: bash
+
+      - name: Build
+        run: pnpm build
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Test
+        run: pnpm test
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
