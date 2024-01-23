@@ -5,6 +5,14 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   base: "/weather-app/",
+  build: {
+    rollupOptions: {
+      input: {
+        main: "./index.html",
+        404: "./404.html",
+      },
+    },
+  },
   define: {
     "process.env": process.env,
   },
