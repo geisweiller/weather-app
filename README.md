@@ -138,3 +138,8 @@ All libraries used in this project have a good documentation and community suppo
 - Used LocalStorage to store the favorite cities and the temperature unit for a better user experience.
 
 - Didn't use Redux/Context API because the app is not complex enough to justify the use of a state management library. The state management was easily handled by and passed through props/routes.
+
+### Playground (TODO):
+
+- Add a map to show the location of the city.
+- Background image based on the weather.
