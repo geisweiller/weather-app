@@ -30,6 +30,8 @@ You can run through a docker container or locally.
 
 ### Docker:
 
+Remember to set OPEN_WEATHER_API_KEY environment variable
+
 1. Build the image
 
 ```
@@ -41,6 +43,14 @@ $ docker build -t weather-app .
 
 ```
 $ docker run -p 8000:8000 weather-app
+
+```
+
+or
+
+```
+
+$ docker-compose up
 
 ```
 
