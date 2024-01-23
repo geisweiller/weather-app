@@ -42,6 +42,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
             {location.name} ({location.state && `${location.state}, `}
             {location.country})
           </Text>
+
           <Text className="text-sm first-letter:capitalize">
             {currentWeatherData?.current.weather[0].description}
           </Text>
@@ -54,6 +55,7 @@ const StarredLocation = ({ location, unitValue }: StarredLocationProps) => {
               {currentWeatherData?.current.temp.toFixed(0)}
               {tempUnitConversion(unitValue)}
             </Text>
+
             <Icon
               className="hidden sm:block"
               code={currentWeatherData?.current.weather[0].icon}
