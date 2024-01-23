@@ -12,7 +12,7 @@ COPY . .
 
 COPY server.js .
 
-RUN pnpm run build
+RUN pnpm run docker-build
 
 EXPOSE 8000
 
