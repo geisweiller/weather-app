@@ -18,6 +18,8 @@ You can see the app live [here](https://geisweiller.github.io/weather-app/).
 
 - The app is built with React + Vite + Typescript.
 
+- The app use Storybook to develop the components.
+
 - The app is tested with Vitest + React Testing Library.
 
 - The app is deployed in Github Pages.
@@ -57,11 +59,19 @@ http://localhost:5173/weather-app/
 
 ```
 
-pnpm test
+$ pnpm test
 
 ```
 
-5. To collect tests coverage
+5. To run storybook
+
+```
+
+$ pnpm storybook
+
+```
+
+6. To collect tests coverage
 
 ```
 
