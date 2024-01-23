@@ -1,4 +1,4 @@
-import { Drop, Wind, Star, Warning } from "@phosphor-icons/react";
+import { Drop, Wind, Star, Warning, ArrowLeft } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -100,10 +100,10 @@ const Weather = () => {
     <div className="flex flex-col gap-10 w-full max-w-4xl">
       <div className="flex bg-transparent border-transparent shadow-none items-center justify-between">
         <Button
-          className="w-min bg-dark-blue text-sm border-dark-blue px-5"
+          className="w-min bg-dark-blue text-sm border-dark-blue"
           onClick={() => navigate("/")}
         >
-          <Text className="text-sm">Back</Text>
+          <ArrowLeft size={32} color="white" />
         </Button>
 
         <div className="flex flex-col items-center [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
