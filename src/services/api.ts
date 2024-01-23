@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { CurrentWeatherService } from "./types/currentweather";
+import { GeocodingService } from "./types/geocoding";
 import { geocodingUrl, weatherUrl } from "./urls/urls";
 
 const apiKey = process.env.OPEN_WEATHER_API_KEY as string;
