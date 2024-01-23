@@ -108,7 +108,7 @@ const Weather = () => {
 
         <div className="flex flex-col items-center [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
           <div className="flex items-center gap-5 justify-between">
-            <Text className="text-2xl font-bold">
+            <Text className="text-2xl font-bold text-center">
               {currentLocation.name} (
               {currentLocation.state && `${currentLocation.state}, `}
               {currentLocation.country})
@@ -154,7 +154,7 @@ const Weather = () => {
         >
           <Star
             size={32}
-            color="#d4af37"
+            color="gold"
             {...(isFavorited() && { weight: "fill" })}
           />
         </Button>
@@ -193,7 +193,7 @@ const Weather = () => {
                 className="flex items-center justify-between gap-5"
               >
                 <div className="flex gap-2 items-center">
-                  <Text className="text-sm font-bold">
+                  <Text className="text-sm font-bold w-8">
                     {new Date(day.dt * 1000).toLocaleDateString("en-US", {
                       weekday: "short",
                     })}
@@ -211,7 +211,7 @@ const Weather = () => {
                   {day.summary}
                 </Text>
 
-                <div className="flex gap-3 items-center w-32 justify-between">
+                <div className="flex gap-3 items-center w-24 justify-between">
                   <span className="flex flex-col items-center gap-1">
                     <Drop size={24} color="white" />
 
