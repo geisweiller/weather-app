@@ -2,7 +2,8 @@ import { Drop, Wind, Star, Warning } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Text, Icon, Box, Button, Loader } from "../../components";
+import { Text, Icon, Box, Button, Loader, Switch } from "../../components";
+import { switchOptions } from "../../helpers/switch-options";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { EmptyState } from "../../layouts";
 import { fetchCurrentWeather } from "../../services/api";
@@ -17,7 +18,13 @@ const Weather = () => {
   const navigate = useNavigate();
   const { location: currentLocation } = location.state;
   const { weather: currentWeather } = location.state;
-  const { storedValue: unitValue } = useLocalStorage("unit", "metric");
+
+  const { storedValue: unitValue, setValue: setUnitValue } = useLocalStorage(
+    "unit",
+    "metric"
+  );
+  const { storedValue: storedLocation, setValue: setLocation } =
+    useLocalStorage("locations", "[]");
 
   const {
     data: currentWeatherData,
@@ -25,7 +32,7 @@ const Weather = () => {
     isFetching: isWeatherFetching,
     isError: isWeatherError,
   } = useQuery<CurrentWeatherService>({
-    queryKey: ["weather", currentLocation],
+    queryKey: ["weather", currentLocation, unitValue],
     queryFn: () =>
       fetchCurrentWeather(currentLocation.lat, currentLocation.lon, unitValue),
     enabled: !!currentLocation && !currentWeather,
@@ -33,10 +40,8 @@ const Weather = () => {
     initialData: currentWeather as CurrentWeatherService,
   });
 
-  const { storedValue, setValue } = useLocalStorage("locations", "[]");
-
   const handleLocationFavorite = () => {
-    const parsedLocations = JSON.parse(storedValue);
+    const parsedLocations = JSON.parse(storedLocation);
 
     const existsIndex = parsedLocations.findIndex(
       (location: { lat: number; lon: number }) =>
@@ -48,19 +53,19 @@ const Weather = () => {
       const updatedLocations = [...parsedLocations];
       updatedLocations.splice(existsIndex, 1);
       const stringifiedLocations = JSON.stringify(updatedLocations);
-      setValue(stringifiedLocations);
+      setLocation(stringifiedLocations);
     } else {
       const stringifiedNewValue = JSON.stringify([
         ...parsedLocations,
         currentLocation,
       ]);
 
-      setValue(stringifiedNewValue);
+      setLocation(stringifiedNewValue);
     }
   };
 
   const isFavorited = () => {
-    const parsedLocations = JSON.parse(storedValue);
+    const parsedLocations = JSON.parse(storedLocation);
     const existsIndex = parsedLocations.findIndex(
       (location: { lat: number; lon: number }) =>
         location.lat === currentLocation.lat &&
@@ -165,7 +170,15 @@ const Weather = () => {
 
       {currentWeatherData?.daily && (
         <Box className="bg-opacity-70">
-          <Text className="text-xl font-bold">Forecast</Text>
+          <div className="flex justify-between">
+            <Text className="text-xl font-bold">Forecast</Text>
+            <Switch
+              options={switchOptions(unitValue)}
+              onClick={(id) => {
+                setUnitValue(id);
+              }}
+            />
+          </div>
 
           <div className="flex flex-col gap-5 container">
             {currentWeatherData?.daily.map((day) => (

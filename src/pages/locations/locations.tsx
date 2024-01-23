@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import StarredLocation from "./starred-location";
 import { Button, Text, Input, Loader, Switch, Box } from "../../components";
+import { switchOptions } from "../../helpers/switch-options";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { fetchDirectGeocoding } from "../../services/api";
 import { GeocodingService } from "../../services/types/geocoding";
@@ -43,18 +44,7 @@ const Locations = () => {
         </span>
 
         <Switch
-          options={[
-            {
-              id: "metric",
-              label: "°C",
-              selected: unitValue === "metric",
-            },
-            {
-              id: "imperial",
-              label: "°F",
-              selected: unitValue === "imperial",
-            },
-          ]}
+          options={switchOptions(unitValue)}
           onClick={(id) => {
             setUnitValue(id);
           }}
