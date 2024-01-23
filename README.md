@@ -26,6 +26,35 @@ You can see the app live [here](https://geisweiller.github.io/weather-app/).
 
 ## Instructions:
 
+You can run through a docker container or locally.
+
+### Docker:
+
+1. Build the image
+
+```
+$ docker build -t weather-app .
+
+```
+
+2. Run the container
+
+```
+$ docker run -p 8000:8000 weather-app
+
+```
+
+3. Open up your browser and browser your server's IP
+
+e.g:
+
+```
+localhost:8000/weather-app/
+
+```
+
+### Locally:
+
 1. Install dependencies with your favorite package manager
 
 ```
