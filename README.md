@@ -11,6 +11,7 @@ You can see the app live [here](https://geisweiller.github.io/weather-app/).
   - Features:
     - Search for any city in the world.
     - Shows the current weather, humidity, wind speed, alerts and forecast for next 7 days.
+    - Shows the location of the city in a map.
     - Switch between Celsius and Fahrenheit
     - Star your favorite cities and access them quickly.
 
@@ -135,11 +136,12 @@ All libraries used in this project have a good documentation and community suppo
 
 - Used [TailwindCSS](https://tailwindcss.com/) for styling which is a very useful tool for fast prototyping.
 
+- Used [Leaflet](https://leafletjs.com/) for the map.
+
 - Used LocalStorage to store the favorite cities and the temperature unit for a better user experience.
 
 - Didn't use Redux/Context API because the app is not complex enough to justify the use of a state management library. The state management was easily handled by and passed through props/routes.
 
 ### Playground (TODO):
 
-- Add a map to show the location of the city.
 - Background image based on the weather.
