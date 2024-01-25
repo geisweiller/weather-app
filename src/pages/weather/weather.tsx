@@ -2,7 +2,7 @@ import { Drop, Wind, Star, Warning, ArrowLeft } from "@phosphor-icons/react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Text, Icon, Box, Button, Loader, Switch } from "../../components";
+import { Text, Icon, Box, Button, Loader, Map, Switch } from "../../components";
 import { switchOptions } from "../../helpers/switch-options";
 import { useLocalStorage } from "../../hooks/use-local-storage";
 import { EmptyState } from "../../layouts";
@@ -159,6 +159,8 @@ const Weather = () => {
           />
         </Button>
       </div>
+
+      <Map coordinates={[currentLocation.lat, currentLocation.lon]} />
 
       {currentWeatherData?.alerts && (
         <Box>
